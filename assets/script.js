@@ -27,14 +27,27 @@ const showSlide = n => {
   slideText.innerHTML = slides[n].tagLine;
 }
 showSlide(index);
+
 const next = document.querySelector('.arrow_right');
+const slideDot = document.querySelectorAll('.dot');
 next.addEventListener('click', () => {
-  index = (index + 1) % slides.length; 
+  index = (index + 1) % slides.length;
+  for (i = 0; i < slideDot.length; i++) {
+    slideDot[i].className = slideDot[i].className.replace(" dot_selected", "");
+  }
+  slideDot[index].style.display = "block";  
+  slideDot[index].className += " dot_selected";
   showSlide(index);
 });
 
 const prev = document.querySelector('.arrow_left');
 prev.addEventListener('click', () => {
-  index = (index +  slides.length - 1) % slides.length; 
+  index = (index +  slides.length - 1) % slides.length;
+  for (i = 0; i < slideDot.length; i++) {
+    slideDot[i].className = slideDot[i].className.replace(" dot_selected", "");
+  }
+  slideDot[index].style.display = "block";  
+  slideDot[index].className += " dot_selected";
   showSlide(index);
 });
+
